@@ -3,7 +3,29 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+    # If sorting parameters are provided, update session
+    if params[:sort].present? && params[:direction].present?
+      # Validate sort column
+      if %w[title rating release_date].include?(params[:sort])
+        session[:sort] = params[:sort]
+      else
+        raise ArgumentError, "Invalid sort column: #{params[:sort]}"
+      end
+
+      # Validate sort direction
+      if %w[asc desc].include?(params[:direction])
+        session[:direction] = params[:direction]
+      else
+        raise ArgumentError, "Invalid sort direction: #{params[:direction]}"
+      end
+    end
+
+    # Apply sorting only if session values exist
+    if session[:sort].present? && session[:direction].present?
+      @movies = Movie.order("#{session[:sort]} #{session[:direction]}")
+    else
+      @movies = Movie.all
+    end
   end
 
   # GET /movies/1 or /movies/1.json
