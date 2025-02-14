@@ -7,6 +7,7 @@
 <br>
 
 <div>
-  <%= link_to "Show this movie", @movie %> |
-  <%= link_to "Back to movies", movies_path %>
+  <%= link_to "Show this movie", @movie %>
+
+  <button onclick="location.href='<%= movies_path %>'">Back to movies</button>
 </div>

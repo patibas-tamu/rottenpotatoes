@@ -22,3 +22,7 @@ th, td {
 thead {
     background-color: white;
 }
+
+.form-group {
+    margin-bottom: 1rem;
+}

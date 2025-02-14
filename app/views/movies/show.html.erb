@@ -3,8 +3,10 @@
 <%= render @movie %>
 
 <div>
-  <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
-  <%= link_to "Back to movies", movies_path %>
+  
+  <button onclick="location.href='<%= edit_movie_path(@movie) %>'">Edit this movie</button>
+
+  <button onclick="location.href='<%= movies_path %>'">Back to movies</button>
 
   <%= button_to "Destroy this movie", @movie, method: :delete %>
 </div>
