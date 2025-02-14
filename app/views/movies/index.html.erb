@@ -4,6 +4,18 @@
 
 <h1>Movies</h1>
 
+<div>
+  <%= form_with url: movies_path, method: :get, local: true, class: "sort-form" do %>
+    <label for="sort">Sort by:</label>
+    <%= select_tag :sort, options_for_select([["Title", "title"], ["Rating", "rating"], ["Release Date", "release_date"]], params[:sort])%>
+
+    <label for="direction">Order:</label>
+    <%= select_tag :direction, options_for_select([["Ascending", "asc"], ["Descending", "desc"]], params[:direction])%>
+
+    <%= submit_tag "Sort"%>
+  <% end %>
+</div>
+
 <div id="movies">
   <table>
   <thead>
